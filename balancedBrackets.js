@@ -40,6 +40,42 @@ Output
 false
 */
 
+function isOpen(b){
+    return (b==='{'||b==='['||b==='(');
+}
+function isMatch(open,close){
+    if(open==='{' && close==='}'){
+        return true;
+    }
+    if(open==='(' && close===')'){
+        return true;
+    }
+    if(open==='[' && close===']'){
+        return true;
+    }
+    return false;
+}
+function isBalanced(s) {
+    let stack = [];
+    for(let i=0;i<s.length;i++){
+        if(isOpen(s[i])){
+            stack.push(s[i])
+        }else{
+            let open = stack[stack.length-1]
+            if(isMatch(open,s[i])){
+                stack.pop();
+            }else{
+                return "NO"
+            }
+        }
+    }
+    if(stack.length===0){
+        return 'YES'
+    } else {
+        return 'NO'
+    }
+}
+
 
 
 balancedBrackets(s) {
